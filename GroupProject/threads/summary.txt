@@ -1,0 +1,7 @@
+Description of threads:
+
+Cases where threads are normally used, and why?
+    Typically used with I/O bound operations or networking
+
+What are the pitfalls of using threads
+    Thread safety and shared resources, describe locks and how they're used
