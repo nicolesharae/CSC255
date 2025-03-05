@@ -18,13 +18,13 @@ RESULTS = {}
 results_lock = threading.Lock()
 
 def check_url(url: str) -> None:
-    logger.info(f"Checking if {url} is reachable")
+    logger.info("Checking if %s is reachable", url)
     is_reachable = False
     try:
         response = requests.get(url)
         is_reachable = response.ok
     except requests.exceptions.RequestException as e:
-        logger.error(f"Error while checking {url}: {e}")
+        logger.error("Error while checking %s: %s", url, e)
     finally:
         with results_lock:
             RESULTS[url] = is_reachable
@@ -45,7 +45,7 @@ def main():
         
     logger.info("Results:")
     for url, is_reachable in RESULTS.items():
-        logger.info(f"{url} is {'' if is_reachable else 'not '}reachable")
+        logger.info("%s is %s reachable", url, f"{'' if is_reachable else 'not '}")
 
 
 if __name__ == "__main__":
